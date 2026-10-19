@@ -1,23 +1,27 @@
 {
-  "name": "ME Cloud Workstation",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "name": "ME Kali Cloud Desktop",
+  "image": "kalilinux/kali-rolling",
   "features": {
-    "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/devcontainers/features/python:1": {
-      "version": "3.12"
-    },
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "lts"
-    },
-    "ghcr.io/devcontainers/features/java:1": {
-      "version": "21"
-    },
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+    "ghcr.io/devcontainers/features/desktop-lite:1": {
+      "password": "codespaces",
+      "webPort": "6080",
+      "vncPort": "5901"
+    }
   },
   "hostRequirements": {
     "cpus": 4,
     "memory": "8gb"
   },
-  "remoteUser": "vscode",
+  "forwardPorts": [
+    6080
+  ],
+  "portsAttributes": {
+    "6080": {
+      "label": "ME Kali Desktop",
+      "onAutoForward": "openBrowser",
+      "visibility": "private"
+    }
+  },
+  "remoteUser": "root",
   "postCreateCommand": "bash .devcontainer/post-create.sh"
 }
